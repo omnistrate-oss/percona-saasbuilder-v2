@@ -29,7 +29,7 @@ function MetricCard(props) {
       >
         <Text
           size="medium"
-          color="#6941C6"
+          color="#0E5FB5"
           weight="semibold"
           sx={{ textAlign: "center" }}
         >
@@ -38,7 +38,7 @@ function MetricCard(props) {
         {value !== "" && unit && (
           <Text
             size="medium"
-            color="#6941C6"
+            color="#0E5FB5"
             weight="semibold"
             sx={{ ml: "4px" }}
           >

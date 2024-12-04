@@ -1,7 +1,8 @@
 import * as React from "react";
+import { styleConfig } from "src/providerConfig";
 
 const FailoverIcon = (props) => {
-  let { color = "#D92D20" } = props;
+  let { color = styleConfig.dangerColor } = props;
   const { disabled } = props;
 
   if (disabled) {

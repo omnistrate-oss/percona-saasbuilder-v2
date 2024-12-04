@@ -5,7 +5,7 @@ import { Stack, Typography } from "@mui/material";
 
 import { Text } from "../Typography/Typography";
 import CheckboxIcon from "../Icons/Checkbox/CheckboxIcon";
-import SubmitButton from "../NonDashboardComponents/FormElementsV2/SubmitButton";
+import Button from "../Button/Button";
 
 type SuccessBoxProps = {
   title: string;
@@ -24,6 +24,7 @@ const SuccessBox: FC<SuccessBoxProps> = ({
       border="1px solid #E5E7EB"
       borderRadius="12px"
       gap="32px"
+      mt="24px"
     >
       <CheckboxIcon />
       <Stack gap="8px">
@@ -42,9 +43,9 @@ const SuccessBox: FC<SuccessBoxProps> = ({
       </Stack>
 
       <Stack gap="20px">
-        <SubmitButton href="/signin" loading={false}>
+        <Button variant="contained" href="/signin" loading={false}>
           Go to Login
-        </SubmitButton>
+        </Button>
         {footer}
       </Stack>
     </Stack>

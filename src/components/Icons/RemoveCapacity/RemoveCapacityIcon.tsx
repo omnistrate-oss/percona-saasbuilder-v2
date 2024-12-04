@@ -1,7 +1,9 @@
+import { styleConfig } from "src/providerConfig";
+
 const RemoveCapacityIcon = (props) => {
-  let { color = "#D92D20" } = props;
+  let { color = styleConfig.dangerColor } = props;
   const { disabled, ...restProps } = props;
-  
+
   if (disabled) {
     color = "#a3a6ac";
   }

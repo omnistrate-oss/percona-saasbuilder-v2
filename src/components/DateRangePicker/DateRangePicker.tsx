@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import CalendarIcon from "../Icons/Calendar/Calendar";
 import { SetState } from "src/types/common/reactGenerics";
 import MuiPopover from "@mui/material/Popover";
+import { styleConfig } from "src/providerConfig";
 
 const Popover = styled(MuiPopover)({
   [`& .${popoverClasses.paper}`]: {
@@ -181,7 +182,7 @@ const DateRangePicker: FC<DateRangePickerProps> = (props) => {
             months={2}
             ranges={dateRanges}
             direction="horizontal"
-            color="#7F56D9"
+            color={styleConfig.primaryColor}
             showMonthAndYearPickers={false}
             navigatorRenderer={NavigationRenderer}
             showDateDisplay={false}

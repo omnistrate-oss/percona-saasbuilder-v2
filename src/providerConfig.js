@@ -8,20 +8,21 @@ export const styleConfig = {
   sidebarBorderColor: "#E4E4E5", // Same as navbarBorderColor
   //sidebarTextColor: "#182230",
   sidebarTextColor: "#344054",
-  sidebarTextActiveColor: "#079455",
+  sidebarTextActiveColor: "#0E5FB5",
   sidebarIconColor: "#667085",
-  sidebarIconActiveColor: "#079455",
+  sidebarIconActiveColor: "#0E5FB5",
   sidebarIconDisabledColor: "#A0AEC0",
-  primaryColor: "#039855", // Filled Button Background
+  primaryColor: "#0E5FB5", // Filled Button Background
   primaryTextColor: "#FFFFFF", // Filled Button Text
-  primaryHoverColor: "#039855", // Filled Button Hover
+  primaryHoverColor: "#0E5FB5", // Filled Button Hover
   // secondaryColor: "#F5F5FF", // Outlined Button Background
   // primaryTextColor: "#FFFFFF", // Outlined Button Text
   // primaryHoverColor: "#7F56D9", // Outlined Button Hover
-  secondaryColor: "#6941C6",
-  secondaryHoverLight: "#6941C60d",
-  linkColor: "#7F56D9",
-  headerIconColor: "#17B26A",
+  secondaryColor: "#0E5FB5",
+  secondaryHoverLight: "#0E5FB50d",
+  linkColor: "#2C323E",
+  headerIconColor: "#0E5FB5",
+  dangerColor: "#E2584D",
 };
 
 // Dark Mode - Sidebar and Navbar

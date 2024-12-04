@@ -80,7 +80,7 @@ const Button = styled(
 
   return {
     ...buttonStyles,
-    borderRadius: 8,
+    borderRadius: "128px",
     textTransform: "none",
     minWidth: "auto",
     [`&.${buttonClasses.contained}`]: {
@@ -143,7 +143,7 @@ const Button = styled(
       // opacity: 0.38,
     },
     [`&.${buttonClasses.text}`]: {
-      color: "#6941C6",
+      color: "#0B4A8C",
     },
     [`&.${buttonClasses.text}:disabled`]: {
       opacity: 0.38,

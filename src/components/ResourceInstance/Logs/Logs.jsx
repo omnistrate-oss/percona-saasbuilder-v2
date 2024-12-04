@@ -213,6 +213,7 @@ function Logs(props) {
               Node ID
             </Text>
             <Select
+              rounded
               value={selectedNodeId}
               sx={{
                 width: "auto",

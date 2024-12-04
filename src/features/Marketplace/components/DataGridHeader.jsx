@@ -9,6 +9,7 @@ import Button from "src/components/Button/Button";
 import RefreshWithToolTip from "src/components/RefreshWithTooltip/RefreshWithToolTip";
 import LoadingSpinnerSmall from "src/components/CircularProgress/CircularProgress";
 import Tooltip from "src/components/Tooltip/Tooltip";
+import { styleConfig } from "src/providerConfig";
 
 const SUBSCRIPTION_TYPES = {
   all: {
@@ -114,7 +115,7 @@ export const Actions = (props) => {
         placement="top"
       >
         <Button
-          bgColor="#D92D20"
+          bgColor={styleConfig.dangerColor}
           sx={{
             height: "40px",
             border: "8px",
@@ -136,6 +137,7 @@ export const Actions = (props) => {
         </Button>{" "}
       </Tooltip>
       <Select
+        rounded
         sx={{
           height: "40px !important",
           // padding: "10px 14px !important",

@@ -165,6 +165,7 @@ const ResourceInstanceControlPanel: FC<ResourceInstanceControlPanelProps> = ({
 
   return (
     <Select
+      rounded
       value={""}
       renderValue={(value: string) => {
         if (!value) {

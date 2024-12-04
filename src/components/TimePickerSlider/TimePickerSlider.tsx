@@ -26,7 +26,7 @@ function getCustomMarkStyles() {
   customMarksIndexes.forEach((index) => {
     styles[`& .${sliderClasses.mark}[data-index='${index}']`] = {
       height: "7px",
-      backgroundColor: "#7F56D9",
+      backgroundColor: "#0B4A8C",
       width: "1px",
       opacity: 0.7,
     };
@@ -62,10 +62,10 @@ const TimeSlider = styled(Slider)(() => ({
   },
   "& .MuiSlider-track": {
     height: 2,
-    color: "#B692F6",
+    color: "#0E5FB5",
   },
   "& .MuiSlider-rail": {
-    color: "#B692F6",
+    color: "#0E5FB5",
     opacity: 1,
     height: 2,
   },
@@ -79,7 +79,7 @@ const TimeSlider = styled(Slider)(() => ({
   },
   [`& .${sliderClasses.mark}`]: {
     height: "12px",
-    backgroundColor: "#7F56D9",
+    backgroundColor: "#0B4A8C",
     width: "1px",
   },
 

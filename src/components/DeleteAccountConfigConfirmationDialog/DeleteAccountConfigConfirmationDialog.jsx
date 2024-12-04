@@ -7,6 +7,7 @@ import DeleteCirleIcon from "components/Icons/DeleteCircle/DeleteCirleIcon";
 import { Text } from "components/Typography/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
+import { styleConfig } from "src/providerConfig";
 
 function DeleteAccountConfigConfirmationDialog(props) {
   const {
@@ -16,7 +17,7 @@ function DeleteAccountConfigConfirmationDialog(props) {
     title = "Delete",
     message = "To confirm deletion, please enter <i><b> deleteme</b></i>, in the field below:",
     buttonLabel = "Delete",
-    buttonColor = "#D92D20",
+    buttonColor = styleConfig.dangerColor,
     isLoading,
     IconComponent = DeleteCirleIcon,
   } = props;

@@ -27,6 +27,7 @@ import StatusChip from "src/components/StatusChip/StatusChip";
 import { getCustomDNSStatusStylesAndLabel } from "src/constants/statusChipStyles/customDNS";
 import { useMutation } from "@tanstack/react-query";
 import ViewInstructionsIcon from "src/components/Icons/AccountConfig/ViewInstrcutionsIcon";
+import { styleConfig } from "src/providerConfig";
 
 export type AddCustomDNSToResourceInstancePayload = {
   customDNS: string;
@@ -223,7 +224,6 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
       await addCustomDNSMutation?.mutateAsync(payload);
       setShouldShowConfigDialog(true);
       setIsTextFieldDisabled(true);
-
     } catch (err) {
       console.error(err);
     }
@@ -272,11 +272,11 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
         <>
           <TableRow>
             <TableCell align="center" sx={{ paddingRight: "8px" }}>
-              <AccordionEditIcon color="#53389E" />
+              <AccordionEditIcon color="#0B4A8C" />
             </TableCell>
             <TableCell colSpan={2} sx={{ paddingLeft: "4px" }}>
               <Stack direction="row" alignItems="center" gap="10px">
-                <Text color="#53389E" weight="medium" size="small">
+                <Text color="#0B4A8C" weight="medium" size="small">
                   Configure Endpoint Alias
                 </Text>
                 <Switch
@@ -304,7 +304,7 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
                 }}
               />
               <TableCell colSpan={2} sx={{ paddingLeft: "4px", paddingTop: 0 }}>
-                <FieldContainer marginTop={0} sx={{maxWidth : "510px"}}>
+                <FieldContainer marginTop={0} sx={{ maxWidth: "510px" }}>
                   <Stack
                     direction="row"
                     alignItems="center"
@@ -329,7 +329,7 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
                             setShowConfigurationDialog(true);
                           }}
                         >
-                          <ViewInstructionsIcon color="#7F56D9" />
+                          <ViewInstructionsIcon color="#0B4A8C" />
                         </IconButtonSquare>
                         <IconButtonSquare
                           onClick={() => {
@@ -338,7 +338,7 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
                             setIsEditing(true);
                           }}
                         >
-                          <EditIcon color="#7F56D9" />
+                          <EditIcon color="#0B4A8C" />
                         </IconButtonSquare>
                         <IconButtonSquare
                           sx={{ borderColor: "#FDA29B !important" }}
@@ -372,7 +372,7 @@ const ResourceConnectivityCustomDNS: FC<ResourceConnectivityEndpointProps> = (
                           <Button
                             variant="outlined"
                             sx={{
-                              color: "#D92D20 !important",
+                              color: `${styleConfig.dangerColor} !important`,
                             }}
                             onClick={() => {
                               customDNSFormik.resetForm();

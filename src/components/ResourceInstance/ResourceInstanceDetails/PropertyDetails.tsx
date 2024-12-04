@@ -13,6 +13,7 @@ import AwsLogo from "src/components/Logos/AwsLogo/AwsLogo";
 import GcpLogo from "src/components/Logos/GcpLogo/GcpLogo";
 import AzureLogo from "src/components/Logos/AzureLogo/AzureLogo";
 import JSONViewModal from "./JSONViewModal";
+import { styleConfig } from "src/providerConfig";
 
 export type Row = {
   label: string;
@@ -85,7 +86,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
         }}
         alignItems="left"
       >
-        <Text size="small" weight="semibold" color="#6941C6">
+        <Text size="small" weight="semibold" color="#2C323E">
           {rows.title}
         </Text>
         <Text size="small" weight="regular" color="#475467">
@@ -154,7 +155,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                     fontWeight: 600,
                     fontSize: "14px",
                     lineHeight: "20px",
-                    color: "#6941C6",
+                    color: "#2C323E",
                     cursor: "pointer",
                   }}
                   onClick={(event) => {
@@ -176,7 +177,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 </Text>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#6941C6", width: 20, height: 20 }}
+                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -191,7 +192,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                     fontWeight: 600,
                     fontSize: "14px",
                     lineHeight: "20px",
-                    color: "#7F56D9",
+                    color: styleConfig.linkColor,
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
@@ -202,7 +203,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 </Link>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#6941C6", width: 20, height: 20 }}
+                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -213,7 +214,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 <Text
                   size="small"
                   weight="regular"
-                  color="#6941C6"
+                  color="#475467"
                   ellipsis
                   sx={{ flex: 1, wordBreak: "break-word" }}
                 >
@@ -221,7 +222,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 </Text>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#6941C6", width: 20, height: 20 }}
+                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -239,7 +240,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 <CopyButton
                   text={row.value}
                   iconProps={{
-                    color: "#6941C6",
+                    color: "#2C323E",
                     width: 20,
                     height: 20,
                   }}

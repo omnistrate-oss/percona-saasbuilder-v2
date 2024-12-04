@@ -3,10 +3,11 @@ import { Text } from "src/components/Typography/Typography";
 import Link from "next/link";
 import ChevronRightIcon from "src/components/Icons/ChevronRight/ChevronRightIcon";
 import { FC } from "react";
+import { styleConfig } from "src/providerConfig";
 
 const StyledLink = styled(Link)({
   textDecoration: "underline",
-  color: "#7F56D9",
+  color: styleConfig.linkColor,
   fontWeight: 500,
 });
 

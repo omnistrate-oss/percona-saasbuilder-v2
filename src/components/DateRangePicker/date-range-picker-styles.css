@@ -178,7 +178,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #7f56d9;
+  background: #0e5fb5;
 }
 
 .rdrDayToday:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span:after,
@@ -383,7 +383,7 @@
   .rdrDayHovered
   .rdrDayNumber:after {
   content: "";
-  border: 1px solid #7f56d9;
+  border: 1px solid #0e5fb5;
   border-radius: 20px;
   position: absolute;
   top: -2px;
@@ -443,7 +443,7 @@
 
 .rdrStartEdge,
 .rdrEndEdge {
-  color: #7f56d9 !important;
+  color: #0e5fb5 !important;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -451,7 +451,7 @@
 }
 
 .rdrInRange {
-  color: #f9f5ff !important;
+  color: #0e5fb514 !important;
   top: 0px;
   bottom: 0px;
 }
@@ -466,12 +466,12 @@
   bottom: 0px;
   border-top-left-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
-  color: #7f56d9 !important;
+  color: #0e5fb5 !important;
 }
 .rdrDayInPreview {
   top: 0px;
   bottom: 0px;
-  color: #7f56d9 !important;
+  color: #0e5fb5 !important;
 }
 
 .rdrDayEndPreview {
@@ -479,7 +479,7 @@
   bottom: 0px;
   border-top-right-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
-  color: #7f56d9 !important;
+  color: #0e5fb5 !important;
 }
 
 .rdrDays {

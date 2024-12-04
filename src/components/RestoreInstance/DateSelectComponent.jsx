@@ -12,14 +12,14 @@ dayjs.extend(utc);
 
 const HighlightedDay = styled(PickersDay)(({ theme }) => ({
   "&.Mui-highlighted": {
-    backgroundColor: "#F4EBFF",
+    backgroundColor: "#E8F3FF",
   },
   "&.Mui-highlighted.Mui-selected": {
-    backgroundColor: "#9E77ED",
+    backgroundColor: "#0e5fb5",
     color: theme.palette.primary.contrastText,
   },
   "&.Mui-today": {
-    border: `1px solid #9E77ED`,
+    border: `1px solid 0e5fb5`,
   },
   "&.MuiPickersDay-root.Mui-disabled:not(.Mui-selected)": {
     color: "rgba(0, 0, 0, 0.22)",
@@ -37,9 +37,9 @@ const StyledDateInput = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "16px",
   "&.Mui-focused": {
-    border: `1px solid  ${theme.palette.primary["300"]}`,
+    border: `1px solid  #B6D9FF`,
     boxShadow:
-      "0px 0px 0px 4px #F4EBFF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+      "0px 0px 0px 4px #E8F3FF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
   },
 
   "&.Mui-error": {
@@ -172,7 +172,7 @@ function DateSelectComponent({ formData }) {
                 width: "18px",
                 height: "18px",
                 borderRadius: "4px",
-                background: "#F4EBFF",
+                background: "#E8F3FF",
               }}
             />
 

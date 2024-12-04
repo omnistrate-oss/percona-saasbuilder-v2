@@ -22,13 +22,13 @@ const UnCheckedIcon = styled("span")(() => ({
 }));
 
 const CheckedIcon = styled(UnCheckedIcon)({
-  border: "1px solid  #7F56D9",
-  background: "#F9F5FF",
-  backgroundImage: `url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMTAgM0w0LjUgOC41TDIgNiIgc3Ryb2tlPSIjN0Y1NkQ5IiBzdHJva2Utd2lkdGg9IjEuNjY2NiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPg==)`,
+  border: "1px solid  #606C86",
+  background: "#606C86",
+  backgroundImage: `url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjY2NjggMy41TDUuMjUwMTYgOS45MTY2N0wyLjMzMzUgNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==)`,
   backgroundPosition: "center center",
   backgroundRepeat: "no-repeat",
   "input:hover ~ &": {
-    backgroundColor: "rgba(105, 65, 198, 0.15)",
+    backgroundColor: "rgba(96, 108, 134, 1)",
   },
 });
 

@@ -94,6 +94,7 @@ import Button from "src/components/Button/Button";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { styleConfig } from "src/providerConfig";
+import NetworkHeaderIcon from "src/components/Icons/Network/NetworkHeaderIcon";
 
 export const getServerSideProps = async () => {
   return {
@@ -1070,7 +1071,7 @@ function MarketplaceService() {
       </Box>
     );
   };
-//reset states when product tier id/ subscription id changes
+  //reset states when product tier id/ subscription id changes
   useEffect(() => {
     dispatch(setResourceInstanceList([]));
     setSelectedResource({
@@ -1784,7 +1785,11 @@ function MarketplaceService() {
             justifyContent="flex-start"
           >
             <Box paddingTop={"5px"}>
-              <DashboardHeaderIcon />
+              {isCustomNetworksView ? (
+                <NetworkHeaderIcon />
+              ) : (
+                <DashboardHeaderIcon />
+              )}
             </Box>
             <LogoHeader
               margin={0}

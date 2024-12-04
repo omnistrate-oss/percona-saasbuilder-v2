@@ -24,6 +24,7 @@ import { Text } from "../Typography/Typography";
 import LoadingSpinnerSmall from "../CircularProgress/CircularProgress";
 import { AccessCapacityDataType, CapacityAction, ContextType } from "./enums";
 import CapacityIcon from "../Icons/Capacity/CapacityIcon";
+import { styleConfig } from "src/providerConfig";
 
 // Styled Components
 const Dialog = styled(MuiDialog)(() => ({
@@ -155,7 +156,7 @@ const CapacityDialog: FC<CapacityDialogProps> = ({
       : "Number of Replicas to Remove";
 
     const buttonLabel = isAddingCapacity ? "Add" : "Remove";
-    const buttonColor = isAddingCapacity ? "#7F56D9" : "#D92D20";
+    const buttonColor = isAddingCapacity ? "#7F56D9" : styleConfig.dangerColor;
     const successLabel = isAddingCapacity ? "added" : "removed";
 
     const message = isAddingCapacity
