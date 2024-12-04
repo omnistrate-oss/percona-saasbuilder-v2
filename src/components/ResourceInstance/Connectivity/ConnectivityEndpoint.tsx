@@ -98,16 +98,16 @@ const ResourceConnectivityEndpoint: FC<ResourceConnectivityEndpointProps> = (
           }}
           alignItems="left"
         >
-          <Text size="small" weight="semibold" color="rgba(105, 65, 198, 1)">
+          <Text size="small" weight="semibold" color="#2C323E">
             {resourceName}
           </Text>
         </Stack>
         <Box
           sx={{
             border: isPrimaryResource
-              ? "2px solid #7F56D9"
+              ? "2px solid #0B4A8C"
               : "1px solid #EAECF0",
-            background: isPrimaryResource ? "#F9F5FF" : "white",
+            background: isPrimaryResource ? "#127AE80A" : "white",
             borderRadius: "12px",
             ...containerStyles,
           }}
@@ -136,7 +136,7 @@ const ResourceConnectivityEndpoint: FC<ResourceConnectivityEndpointProps> = (
                     marginBottom: "10px",
                   }}
                 >
-                  <Text size="small" weight="medium" color="#53389E">
+                  <Text size="small" weight="medium" color="#0B4A8C">
                     {"Endpoint"}
                   </Text>
 
@@ -169,14 +169,14 @@ const ResourceConnectivityEndpoint: FC<ResourceConnectivityEndpointProps> = (
                             <Text
                               size="small"
                               weight="regular"
-                              color={isPrimaryResource ? "#6941C6" : ""}
+                              color={isPrimaryResource ? "#0B4A8C" : ""}
                             >
                               {endpointPort(endpointURL, port)}
                             </Text>
                             <CopyButton
                               text={endpointPort(endpointURL, port)}
                               iconProps={{
-                                color: "#6941C6",
+                                color: "#000000",
                                 width: 20,
                                 height: 20,
                                 marginTop: 0,
@@ -192,7 +192,7 @@ const ResourceConnectivityEndpoint: FC<ResourceConnectivityEndpointProps> = (
                   {portsArray.length > 1 && (
                     <Stack direction="row">
                       <Button
-                        sx={{ color: "#6941C6" }}
+                        sx={{ color: "#0B4A8C" }}
                         startIcon={
                           isEndpointsExpanded ? (
                             <RemoveCircleOutlineIcon />

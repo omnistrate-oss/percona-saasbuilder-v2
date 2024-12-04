@@ -243,6 +243,11 @@ const AuditLogs: FC<AuditLogsTabProps> = ({
           return (
             <GridCellExpand
               href={pageLink}
+              {...(pageLink && {
+                textStyles: {
+                  color: "#0e5fb5",
+                },
+              })}
               target="_blank"
               value={userDisplayLabel || "-"}
             />

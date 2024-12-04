@@ -1,12 +1,13 @@
 import * as React from "react";
+import { styleConfig } from "src/providerConfig";
 
 const DeleteIcon = (props) => {
   let { color = "" } = props;
   if (!color) {
-    color = "#D92D20";
+    color = styleConfig.dangerColor;
   }
   const { disabled = false } = props;
-  
+
   if (disabled) {
     color = "#a3a6ac";
   }

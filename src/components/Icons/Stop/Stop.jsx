@@ -1,9 +1,10 @@
 import * as React from "react";
+import { styleConfig } from "src/providerConfig";
 const StopIcon = (props) => {
   let { color } = props;
   const { disabled } = props;
   if (!color) {
-    color = "#D92D20";
+    color = styleConfig.dangerColor;
   }
 
   if (disabled) {

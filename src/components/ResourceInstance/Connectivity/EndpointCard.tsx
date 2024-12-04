@@ -23,7 +23,7 @@ const EndpointLine = ({ isPrimary, openPort, endpointURL, mt = "0px" }) => {
       <Text
         size="small"
         weight="regular"
-        color={isPrimary ? "#6941C6" : "#475467"}
+        color={isPrimary ? "#0B4A8C" : "#475467"}
       >
         <span>{endpointURL}</span>
         {openPort && <span>:{openPort}</span>}
@@ -32,7 +32,7 @@ const EndpointLine = ({ isPrimary, openPort, endpointURL, mt = "0px" }) => {
       <CopyButton
         text={openPort ? `${endpointURL}:${openPort}` : endpointURL}
         iconProps={{
-          color: "#6941C6",
+          color: "#000000",
           width: 20,
           height: 20,
           marginTop: 0,
@@ -59,14 +59,14 @@ const EndpointCard: FC<EndpointCardProps> = ({
       p="16px"
       display="flex"
       gap="16px"
-      border={isPrimary ? "2px solid #7F56D9" : "1px solid #D0D5DD"}
-      bgcolor={isPrimary ? "#F9F5FF" : "#FFFFFF"}
+      border={isPrimary ? "2px solid #0B4A8C" : "1px solid #D0D5DD"}
+      bgcolor={isPrimary ? "#127AE80A" : "#FFFFFF"}
     >
       <EndpointIcon />
 
       <Box>
         <Stack direction="row" flexWrap="wrap" gap="8px" mb="6px">
-          <Text size="small" weight="medium" color="#53389E">
+          <Text size="small" weight="medium" color="#0B4A8C">
             {endpointName}
           </Text>
           {isPublic ? (
@@ -118,12 +118,20 @@ const EndpointCard: FC<EndpointCardProps> = ({
 
         {shouldShowViewMoreButton && (
           <Button
-            sx={{ color: "#6941C6", marginTop: "8px" }}
+            sx={{ color: "#0B4A8C", marginTop: "8px" }}
             endIcon={
               isExpanded ? (
-                <RemoveCircleOutlineIcon />
+                <RemoveCircleOutlineIcon
+                  sx={{
+                    color: "#0B4A8C",
+                  }}
+                />
               ) : (
-                <AddCircleOutlineIcon />
+                <AddCircleOutlineIcon
+                  sx={{
+                    color: "#0B4A8C",
+                  }}
+                />
               )
             }
             onClick={() => setIsExpanded(!isExpanded)}

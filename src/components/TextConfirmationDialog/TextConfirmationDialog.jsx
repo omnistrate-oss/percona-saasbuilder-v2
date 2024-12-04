@@ -10,6 +10,7 @@ import LoadingSpinnerSmall from "../CircularProgress/CircularProgress";
 import DeleteCirleIcon from "../Icons/DeleteCircle/DeleteCirleIcon";
 import { Text } from "../Typography/Typography";
 import CloseIcon from "@mui/icons-material/Close";
+import { styleConfig } from "src/providerConfig";
 
 export default function TextConfirmationDialog(props) {
   const {
@@ -20,7 +21,7 @@ export default function TextConfirmationDialog(props) {
     subtitle = "Are you sure you want to delete?",
     message = "To confirm deletion, please enter <i><b> deleteme</b></i>, in the field below:",
     buttonLabel = "Delete",
-    buttonColor = "#D92D20",
+    buttonColor = styleConfig.dangerColor,
     isLoading,
     IconComponent = DeleteCirleIcon,
   } = props;

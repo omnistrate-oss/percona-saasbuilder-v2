@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import MuiTabs, { tabsClasses } from "@mui/material/Tabs";
 import MuiTab, { tabClasses } from "@mui/material/Tab";
 import styled from "@emotion/styled";
+import { styleConfig } from "src/providerConfig";
 
 export const tabs = {
   pricing: "Pricing",
@@ -78,11 +79,10 @@ const Tab = styled(MuiTab)({
   textTransform: "none",
   color: "#A1A5B7",
   [`&.${tabClasses.selected}`]: {
-    // backgroundColor: "#F4EBFF",
     fontSize: "16px",
     fontWeight: 600,
     lineHeight: "24px",
-    borderBottom: "2px solid #7F56D9",
-    color: "#3F4254",
+    borderBottom: `2px solid ${styleConfig.secondaryColor}`,
+    color: styleConfig.secondaryColor,
   },
 });

@@ -25,7 +25,7 @@ const CopyButton = ({
     <Tooltip title={tooltipText} placement="top" {...tooltipProps}>
       <IconButton onClick={handleClick} sx={{ ...iconButtonProps }}>
         <CopyIcon
-          color="#7F56D9"
+          color="#2C323E"
           sx={{ width: "16px", height: "18px", ...iconStyle }}
           {...iconProps}
         />

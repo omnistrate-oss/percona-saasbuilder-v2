@@ -51,9 +51,9 @@ const AuditLogsEventFilterDropdown: FC<DropdownProps> = (props) => {
     );
   };
 
-
   return (
     <Select
+      rounded
       multiple
       value={selectedEventTypes}
       renderValue={() => {

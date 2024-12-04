@@ -10,7 +10,6 @@ import MainImageLayout from "components/NonDashboardComponents/Layout/MainImageL
 import DisplayHeading from "components/NonDashboardComponents/DisplayHeading";
 import FieldContainer from "components/NonDashboardComponents/FormElementsV2/FieldContainer";
 import FieldLabel from "components/NonDashboardComponents/FormElementsV2/FieldLabel";
-import SubmitButton from "components/NonDashboardComponents/FormElementsV2/SubmitButton";
 import TextField from "components/NonDashboardComponents/FormElementsV2/TextField";
 import PasswordField from "components/NonDashboardComponents/FormElementsV2/PasswordField";
 import useSnackbar from "src/hooks/useSnackbar";
@@ -22,6 +21,8 @@ import GithubLogin from "../Signin/components/GitHubLogin";
 import { IDENTITY_PROVIDER_STATUS_TYPES } from "../Signin/constants";
 import ReCAPTCHA from "react-google-recaptcha";
 import SuccessBox from "src/components/SuccessBox/SuccessBox";
+import { styleConfig } from "src/providerConfig";
+import Button from "src/components/Button/Button";
 
 const signupValidationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -31,9 +32,9 @@ const signupValidationSchema = Yup.object({
   password: Yup.string()
     .required("Password is required")
     .matches(passwordRegex, passwordText),
-  confirmPassword: Yup.string()
-    .required("Re-enter your password")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  // confirmPassword: Yup.string()
+  //   .required("Re-enter your password")
+  //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
   legalcompanyname: Yup.string().required("Company name is required"),
 });
 
@@ -49,7 +50,7 @@ const SignupPage = (props) => {
   } = props;
 
   const router = useRouter();
-  const { org, orgUrl, email, userSource } = router.query;
+  const { org, email, userSource } = router.query;
   const [showSuccess, setShowSuccess] = useState(false);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
   const [hasCaptchaErrored, setHasCaptchaErrored] = useState(false);
@@ -100,10 +101,10 @@ const SignupPage = (props) => {
       name: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      // confirmPassword: "",
       legalcompanyname: "",
       companydescription: "",
-      companyurl: "",
+      // companyurl: "",
       userSource: "",
     },
     enableReinitialize: true,
@@ -117,9 +118,9 @@ const SignupPage = (props) => {
     if (org) {
       updatedValues.legalcompanyname = decodeURIComponent(org);
     }
-    if (orgUrl) {
-      updatedValues.companyurl = orgUrl;
-    }
+    // if (orgUrl) {
+    //   updatedValues.companyurl = orgUrl;
+    // }
     if (email) {
       updatedValues.email = decodeURIComponent(email);
     }
@@ -132,8 +133,8 @@ const SignupPage = (props) => {
       ...updatedValues,
     }));
 
-    if (org && orgUrl && email) {
-      const readOnlyFields = ["legalcompanyname", "companyurl", "email"];
+    if (org && email) {
+      const readOnlyFields = ["legalcompanyname", "email"];
 
       readOnlyFields.forEach((fieldName) => {
         const field = document.querySelector(`[name=${fieldName}]`);
@@ -143,7 +144,7 @@ const SignupPage = (props) => {
       });
     }
     /*eslint-disable-next-line react-hooks/exhaustive-deps*/
-  }, [org, orgUrl, email, userSource]);
+  }, [org, email, userSource]);
 
   const { values, touched, errors, handleChange, handleBlur } = formik;
 
@@ -185,15 +186,12 @@ const SignupPage = (props) => {
     policyAgreementText = `By creating your account manually or using your Github account to sign up, you agree to our`;
   }
   const invitationInfo = {};
-  if (email || org || orgUrl) {
+  if (email || org) {
     if (email) {
       invitationInfo.invitedEmail = decodeURIComponent(email);
     }
     if (org) {
       invitationInfo.legalCompanyName = decodeURIComponent(org);
-    }
-    if (orgUrl) {
-      invitationInfo.companyUrl = decodeURIComponent(orgUrl);
     }
   }
 
@@ -271,7 +269,7 @@ const SignupPage = (props) => {
               </FieldError>
             </FieldContainer>
 
-            <FieldContainer>
+            {/* <FieldContainer>
               <FieldLabel>Company URL</FieldLabel>
               <TextField
                 id="companyurl"
@@ -286,7 +284,7 @@ const SignupPage = (props) => {
               <FieldError sx={{ paddingLeft: "13px" }}>
                 {touched.companyurl && errors.companyurl}
               </FieldError>
-            </FieldContainer>
+            </FieldContainer> */}
 
             <FieldContainer>
               <FieldLabel required>Password</FieldLabel>
@@ -305,7 +303,7 @@ const SignupPage = (props) => {
               </FieldError>
             </FieldContainer>
 
-            <FieldContainer>
+            {/* <FieldContainer>
               <FieldLabel required>Confirm Password</FieldLabel>
               <PasswordField
                 name="confirmPassword"
@@ -319,12 +317,13 @@ const SignupPage = (props) => {
               <FieldError sx={{ paddingLeft: "13px" }}>
                 {touched.confirmPassword && errors.confirmPassword}
               </FieldError>
-            </FieldContainer>
+            </FieldContainer> */}
           </FormGrid>
 
           {/* Login and Google Button */}
           <Stack mt="32px" width="480px" mx="auto">
-            <SubmitButton
+            <Button
+              variant="contained"
               type="submit"
               onClick={formik.handleSubmit}
               disabled={
@@ -333,7 +332,7 @@ const SignupPage = (props) => {
               loading={signupMutation.isLoading}
             >
               Create Account
-            </SubmitButton>
+            </Button>
             {isReCaptchaSetup && (
               <ReCAPTCHA
                 size="invisible"
@@ -404,7 +403,7 @@ const SignupPage = (props) => {
           <Link
             target="_blank"
             href="/terms-of-use"
-            style={{ color: "#27A376" }}
+            style={{ color: styleConfig.primaryColor }}
           >
             Terms & Conditions
           </Link>{" "}
@@ -412,7 +411,7 @@ const SignupPage = (props) => {
           <Link
             target="_blank"
             href="/privacy-policy"
-            style={{ color: "#27A376" }}
+            style={{ color: styleConfig.primaryColor }}
           >
             Privacy Policy
           </Link>
@@ -427,7 +426,7 @@ const SignupPage = (props) => {
           textAlign="center"
         >
           Already have an account?{" "}
-          <Link href="/signin" style={{ color: "#27A376" }}>
+          <Link href="/signin" style={{ color: styleConfig.primaryColor }}>
             Login here
           </Link>
         </Typography>

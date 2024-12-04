@@ -223,7 +223,7 @@ function Connectivity(props) {
           alignItems="center"
         >
           <Box>
-            <Text size="small" weight="semibold" color="rgba(105, 65, 198, 1)">
+            <Text size="small" weight="semibold" color="#2C323E">
               {"Connectivity Details Info"}
             </Text>
             <Text size="small" weight="regular" color="#475467">

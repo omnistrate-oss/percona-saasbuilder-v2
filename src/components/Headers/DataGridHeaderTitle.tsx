@@ -17,7 +17,7 @@ type DataGridHeaderTitleProps = {
 };
 
 const Title = styled("p")({
-  color: "#6941C6",
+  color: "#2C323E",
   fontWeight: 600,
   fontSize: "16px",
   lineHeight: "24px",
@@ -68,9 +68,9 @@ const DataGridHeaderTitle: FC<DataGridHeaderTitleProps> = ({
             <Chip
               size="small"
               label={label}
-              fontColor="#067647"
-              bgColor="#ECFDF3"
-              borderColor="#ABEFC6"
+              fontColor="#0B4A8C"
+              bgColor="#E8F3FF"
+              borderColor="#0000000F"
             />
           )}
         </Stack>

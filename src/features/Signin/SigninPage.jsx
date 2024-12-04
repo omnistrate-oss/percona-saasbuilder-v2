@@ -9,7 +9,6 @@ import * as Yup from "yup";
 import MainImageLayout from "components/NonDashboardComponents/Layout/MainImageLayout";
 import FieldContainer from "components/NonDashboardComponents/FormElementsV2/FieldContainer";
 import FieldLabel from "components/NonDashboardComponents/FormElementsV2/FieldLabel";
-import SubmitButton from "components/NonDashboardComponents/FormElementsV2/SubmitButton";
 import TextField from "components/NonDashboardComponents/FormElementsV2/TextField";
 import PasswordField from "components/NonDashboardComponents/FormElementsV2/PasswordField";
 import { customerUserSignin } from "src/api/customer-user";
@@ -24,6 +23,8 @@ import { ENVIRONMENT_TYPES } from "src/constants/environmentTypes";
 import ReCAPTCHA from "react-google-recaptcha";
 import DisplayHeading from "components/NonDashboardComponents/DisplayHeading";
 import { Text } from "src/components/Typography/Typography";
+import { styleConfig } from "src/providerConfig";
+import Button from "src/components/Button/Button";
 
 const createSigninValidationSchema = Yup.object({
   email: Yup.string()
@@ -168,7 +169,7 @@ const SigninPage = (props) => {
     >
       <DisplayHeading mt="24px">Login to your account</DisplayHeading>
 
-      <Stack component="form" gap="32px" mt="44px">
+      <Stack component="form" gap="32px" mt="36px">
         {/* Signin Form */}
         <Stack gap="30px">
           <FieldContainer>
@@ -215,14 +216,15 @@ const SigninPage = (props) => {
 
         {/* Login and Google Button */}
         <Stack gap="16px">
-          <SubmitButton
+          <Button
+            variant="contained"
             type="submit"
             onClick={formik.handleSubmit}
             disabled={!formik.isValid || (isReCaptchaSetup && !isScriptLoaded)}
             loading={signInMutation.isLoading}
           >
             Login
-          </SubmitButton>
+          </Button>
           {isReCaptchaSetup && (
             <ReCAPTCHA
               size="invisible"
@@ -301,7 +303,7 @@ const SigninPage = (props) => {
           textAlign="center"
         >
           You’re new in here?{" "}
-          <Link href="/signup" style={{ color: "#27A376" }}>
+          <Link href="/signup" style={{ color: styleConfig.primaryColor }}>
             Create Account
           </Link>
         </Typography>

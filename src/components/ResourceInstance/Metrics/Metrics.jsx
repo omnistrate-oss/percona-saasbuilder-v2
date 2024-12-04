@@ -784,6 +784,7 @@ function Metrics(props) {
               Node ID
             </Text>
             <Select
+              rounded
               value={selectedNode}
               sx={{
                 width: "auto",

@@ -1,17 +1,16 @@
 import { useSelector } from "react-redux";
 import { selectDrawerExpandedState } from "../../slices/dashboardSideDrawerSlice";
-import { Stack } from "@mui/material";
+// import { Stack } from "@mui/material";
 import { apiDocsUrl } from "../../utils/constants";
-import useDownloadCLI from "../../hooks/useDownloadCLI";
-import LoadingSpinnerSmall from "../CircularProgress/CircularProgress";
-import NavItem, {
-  NonLinkListItem,
-  ListItemText,
-  MenuHoverTooltip,
-  MenuHoverTooltipTitle,
-} from "./NavItem";
+// import useDownloadCLI from "../../hooks/useDownloadCLI";
+// import LoadingSpinnerSmall from "../CircularProgress/CircularProgress";
+import NavItem from // NonLinkListItem,
+// ListItemText,
+// MenuHoverTooltip,
+// MenuHoverTooltipTitle,
+"./NavItem";
 import { List } from "./NavList";
-import { tabs } from "../Tab/MarketplaceServiceDefinitionsTab";
+// import { tabs } from "../Tab/MarketplaceServiceDefinitionsTab";
 import { selectUserrootData } from "../../slices/userDataSlice";
 import {
   getEnumFromUserRoleString,
@@ -22,7 +21,7 @@ import {
 import SupportIcon from "../Icons/SideNavbar/Support/SupportIcon";
 import APIDocsIcon from "../Icons/SideNavbar/APIDocs/APIDocsIcon";
 import PricingIcon from "../Icons/SideNavbar/Pricing/PricingIcon";
-import DownloadCLIIcon from "../Icons/SideNavbar/DownloadCLI/DownloadCLIIcon";
+// import DownloadCLIIcon from "../Icons/SideNavbar/DownloadCLI/DownloadCLIIcon";
 import DeveloperDocsIcon from "../Icons/SideNavbar/DeveloperDocs/DeveloperDocsIcon";
 import BillingPlansIcon from "../Icons/SideNavbar/BillingPlans/BillingPlans";
 import { getMarketplaceProductTierRoute } from "src/utils/route/access/accessRoute";
@@ -32,6 +31,13 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import SideDrawerRight from "../SideDrawerRight/SideDrawerRight";
 import { AccessSupport } from "../Access/AccessSupport";
+import useEnvironmentType from "src/hooks/useEnvironmentType";
+
+export const SidebarLinks = {
+  support: "mailto:ivee@percona.com",
+  pricing: "https://ivee.cloud/#plans",
+  documentation: "https://docs.percona.com/ivee",
+};
 
 const MarketplaceStaticNavList = (props) => {
   const isNavDrawerExpanded = useSelector(selectDrawerExpandedState);
@@ -39,10 +45,10 @@ const MarketplaceStaticNavList = (props) => {
   const {
     // servicePlanUrlLink,
     serviceId,
-    serviceApiId,
+    // serviceApiId,
     apiDocs,
     isActive,
-    subscriptionId,
+    // subscriptionId,
     environmentId,
     activePage,
   } = props;
@@ -50,10 +56,7 @@ const MarketplaceStaticNavList = (props) => {
   const { productTierId } = router.query;
   const [supportDrawerOpen, setSupportDrawerOpen] = useState(false);
   const [currentTabValue, setCurrentTabValue] = useState(false);
-  const { data: service, isFetching: isFetchingData } = useServiceOffering(
-    serviceId,
-    productTierId
-  );
+  const { data: service } = useServiceOffering(serviceId, productTierId);
   const selectUser = useSelector(selectUserrootData);
   const role = getEnumFromUserRoleString(selectUser.roleType);
   const view = viewEnum.AccessService;
@@ -63,7 +66,12 @@ const MarketplaceStaticNavList = (props) => {
     view
   );
   const isServicePlansActive = activePage === sidebarActiveOptions.servicePlans;
-  const servicePlansLink = getMarketplaceProductTierRoute(serviceId, environmentId);
+  const servicePlansLink = getMarketplaceProductTierRoute(
+    serviceId,
+    environmentId
+  );
+
+  const environmentType = useEnvironmentType();
 
   const closeSupportDrawer = () => {
     setSupportDrawerOpen(false);
@@ -77,154 +85,164 @@ const MarketplaceStaticNavList = (props) => {
       href: servicePlansLink,
       isActive: isServicePlansActive,
     },
-    {
-      name: "API Documentation",
-      IconComponent: APIDocsIcon,
-      activeRoutes: [],
-      alt: "api-docs",
-      href: apiDocs ? apiDocs : apiDocsUrl,
-      disabled: apiDocs ? false : true,
-      newTab: apiDocs ? false : true,
-      isActive: isActive,
-    },
-    {
-      name: "Download CLI",
-      activeRoutes: [],
-      alt: `cli`,
-      href: "https://github.com/omnistrate/cli/releases/tag/v0.2",
-      disabled: false,
-      newTab: false,
-      RenderUI: () => {
-        const { downloadCLI, isDownloading } = useDownloadCLI();
+    ...(environmentType !== "PROD"
+      ? [
+          {
+            name: "API Documentation",
+            IconComponent: APIDocsIcon,
+            activeRoutes: [],
+            alt: "api-docs",
+            href: apiDocs ? apiDocs : apiDocsUrl,
+            disabled: apiDocs ? false : true,
+            newTab: apiDocs ? false : true,
+            isActive: isActive,
+          },
+        ]
+      : []),
+    // {
+    //   name: "Download CLI",
+    //   activeRoutes: [],
+    //   alt: `cli`,
+    //   href: "https://github.com/omnistrate/cli/releases/tag/v0.2",
+    //   disabled: false,
+    //   newTab: false,
+    //   RenderUI: () => {
+    //     const { downloadCLI, isDownloading } = useDownloadCLI();
 
-        function handleDownloadClick() {
-          if (!isDownloading) {
-            downloadCLI(serviceId, serviceApiId, subscriptionId);
-          }
-        }
-        return (
-          <MenuHoverTooltip
-            title={<MenuHoverTooltipTitle>Download CLI</MenuHoverTooltipTitle>}
-            isVisible={!isNavDrawerExpanded}
-          >
-            <NonLinkListItem
-              active={false}
-              key="download-cli"
-              onClick={handleDownloadClick}
-              disabled={isDownloading}
-            >
-              <Stack direction="row" alignItems="center">
-                <DownloadCLIIcon active={false} />
-                <ListItemText visible={isNavDrawerExpanded}>
-                  Download CLI{" "}
-                  {isDownloading && (
-                    <LoadingSpinnerSmall sx={{ marginLeft: "24px" }} />
-                  )}
-                </ListItemText>
-              </Stack>
-            </NonLinkListItem>
-          </MenuHoverTooltip>
-        );
-      },
-    },
+    //     function handleDownloadClick() {
+    //       if (!isDownloading) {
+    //         downloadCLI(serviceId, serviceApiId, subscriptionId);
+    //       }
+    //     }
+    //     return (
+    //       <MenuHoverTooltip
+    //         title={<MenuHoverTooltipTitle>Download CLI</MenuHoverTooltipTitle>}
+    //         isVisible={!isNavDrawerExpanded}
+    //       >
+    //         <NonLinkListItem
+    //           active={false}
+    //           key="download-cli"
+    //           onClick={handleDownloadClick}
+    //           disabled={isDownloading}
+    //         >
+    //           <Stack direction="row" alignItems="center">
+    //             <DownloadCLIIcon active={false} />
+    //             <ListItemText visible={isNavDrawerExpanded}>
+    //               Download CLI{" "}
+    //               {isDownloading && (
+    //                 <LoadingSpinnerSmall sx={{ marginLeft: "24px" }} />
+    //               )}
+    //             </ListItemText>
+    //           </Stack>
+    //         </NonLinkListItem>
+    //       </MenuHoverTooltip>
+    //     );
+    //   },
+    // },
     {
       name: "Support",
       activeRoutes: [],
       alt: "support",
-      href: "",
+      href: SidebarLinks.support,
       disabled: !readAccessServiceAllowed,
       newTab: false,
-      RenderUI: () => {
-        function handleSupportClick() {
-          setSupportDrawerOpen(true);
-          setCurrentTabValue(tabs.support);
-        }
-        return (
-          <MenuHoverTooltip
-            title={<MenuHoverTooltipTitle>Support</MenuHoverTooltipTitle>}
-            isVisible={!isNavDrawerExpanded}
-          >
-            <NonLinkListItem
-              active={currentTabValue === tabs.support}
-              onClick={handleSupportClick}
-              clickDisabled={isFetchingData || !readAccessServiceAllowed}
-            >
-              <Stack direction="row" alignItems="center">
-                <SupportIcon />
-                <ListItemText visible={isNavDrawerExpanded}>
-                  Support{" "}
-                </ListItemText>
-              </Stack>
-            </NonLinkListItem>
-          </MenuHoverTooltip>
-        );
-      },
+      IconComponent: SupportIcon,
+
+      // RenderUI: () => {
+      //   function handleSupportClick() {
+      //     setSupportDrawerOpen(true);
+      //     setCurrentTabValue(tabs.support);
+      //   }
+      //   return (
+      //     <MenuHoverTooltip
+      //       title={<MenuHoverTooltipTitle>Support</MenuHoverTooltipTitle>}
+      //       isVisible={!isNavDrawerExpanded}
+      //     >
+      //       <NonLinkListItem
+      //         active={currentTabValue === tabs.support}
+      //         onClick={handleSupportClick}
+      //         clickDisabled={isFetchingData || !readAccessServiceAllowed}
+      //       >
+      //         <Stack direction="row" alignItems="center">
+      //           <SupportIcon />
+      //           <ListItemText visible={isNavDrawerExpanded}>
+      //             Support{" "}
+      //           </ListItemText>
+      //         </Stack>
+      //       </NonLinkListItem>
+      //     </MenuHoverTooltip>
+      //   );
+      // },
     },
     {
       name: "Pricing",
       activeRoutes: [],
       alt: `pricing`,
+      href: SidebarLinks.pricing,
       disabled: !readAccessServiceAllowed,
-      newTab: false,
-      RenderUI: () => {
-        function handlePricingIconClick() {
-          setSupportDrawerOpen(true);
-          setCurrentTabValue(tabs.pricing);
-        }
-        return (
-          <MenuHoverTooltip
-            title={<MenuHoverTooltipTitle>Pricing</MenuHoverTooltipTitle>}
-            isVisible={!isNavDrawerExpanded}
-          >
-            <NonLinkListItem
-              active={currentTabValue === tabs.pricing}
-              key=""
-              onClick={handlePricingIconClick}
-              clickDisabled={isFetchingData || !readAccessServiceAllowed}
-            >
-              <Stack direction="row" alignItems="center">
-                <PricingIcon />
-                <ListItemText visible={isNavDrawerExpanded}>
-                  Pricing{" "}
-                </ListItemText>
-              </Stack>
-            </NonLinkListItem>
-          </MenuHoverTooltip>
-        );
-      },
+      newTab: true,
+      IconComponent: PricingIcon,
+      // RenderUI: () => {
+      //   function handlePricingIconClick() {
+      //     setSupportDrawerOpen(true);
+      //     setCurrentTabValue(tabs.pricing);
+      //   }
+      //   return (
+      //     <MenuHoverTooltip
+      //       title={<MenuHoverTooltipTitle>Pricing</MenuHoverTooltipTitle>}
+      //       isVisible={!isNavDrawerExpanded}
+      //     >
+      //       <NonLinkListItem
+      //         active={currentTabValue === tabs.pricing}
+      //         key=""
+      //         onClick={handlePricingIconClick}
+      //         clickDisabled={isFetchingData || !readAccessServiceAllowed}
+      //       >
+      //         <Stack direction="row" alignItems="center">
+      //           <PricingIcon />
+      //           <ListItemText visible={isNavDrawerExpanded}>
+      //             Pricing{" "}
+      //           </ListItemText>
+      //         </Stack>
+      //       </NonLinkListItem>
+      //     </MenuHoverTooltip>
+      //   );
+      // },
     },
     {
       name: "Documentation",
       activeRoutes: [],
       alt: `dev-docs`,
+      href: SidebarLinks.documentation,
       disabled: !readAccessServiceAllowed,
-      newTab: false,
-      RenderUI: () => {
-        function handleDocumentationIconClick() {
-          setSupportDrawerOpen(true);
-          setCurrentTabValue(tabs.documentation);
-        }
-        return (
-          <MenuHoverTooltip
-            title={<MenuHoverTooltipTitle>Documentation</MenuHoverTooltipTitle>}
-            isVisible={!isNavDrawerExpanded}
-          >
-            <NonLinkListItem
-              active={currentTabValue === tabs.documentation}
-              key=""
-              onClick={handleDocumentationIconClick}
-              clickDisabled={isFetchingData || !readAccessServiceAllowed}
-            >
-              <Stack direction="row" alignItems="center">
-                <DeveloperDocsIcon />
-                <ListItemText visible={isNavDrawerExpanded}>
-                  Documentation{" "}
-                </ListItemText>
-              </Stack>
-            </NonLinkListItem>
-          </MenuHoverTooltip>
-        );
-      },
+      newTab: true,
+      IconComponent: DeveloperDocsIcon,
+      // RenderUI: () => {
+      //   function handleDocumentationIconClick() {
+      //     setSupportDrawerOpen(true);
+      //     setCurrentTabValue(tabs.documentation);
+      //   }
+      //   return (
+      //     <MenuHoverTooltip
+      //       title={<MenuHoverTooltipTitle>Documentation</MenuHoverTooltipTitle>}
+      //       isVisible={!isNavDrawerExpanded}
+      //     >
+      //       <NonLinkListItem
+      //         active={currentTabValue === tabs.documentation}
+      //         key=""
+      //         onClick={handleDocumentationIconClick}
+      //         clickDisabled={isFetchingData || !readAccessServiceAllowed}
+      //       >
+      //         <Stack direction="row" alignItems="center">
+      //           <DeveloperDocsIcon />
+      //           <ListItemText visible={isNavDrawerExpanded}>
+      //             Documentation{" "}
+      //           </ListItemText>
+      //         </Stack>
+      //       </NonLinkListItem>
+      //     </MenuHoverTooltip>
+      //   );
+      // },
     },
   ];
 

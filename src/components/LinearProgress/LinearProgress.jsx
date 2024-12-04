@@ -19,7 +19,7 @@ const LinearProgress = styled(MuiLinearProgress, {
     },
     [`& .${linearProgressClasses.bar}`]: {
       borderRadius: 5,
-      backgroundColor: "#7F56D9",
+      backgroundColor: "#0E5FB5",
     },
   })
 );

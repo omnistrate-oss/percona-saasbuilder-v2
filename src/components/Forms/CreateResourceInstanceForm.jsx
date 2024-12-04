@@ -38,6 +38,7 @@ import Autocomplete, {
 import useCustomNetworks from "src/features/CustomNetworks/hooks/useCustomNetworks";
 import FormTitle from "../FormElements/FormTitle/FormTitle";
 import FormDescription from "../FormElements/FormDescription/FormDescription";
+import { styleConfig } from "src/providerConfig";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -747,7 +748,7 @@ function CreateResourceInstanceForm(props) {
                             <Link
                               style={{
                                 textDecoration: "underline",
-                                color: "blue",
+                                color: styleConfig.linkColor,
                               }}
                               href="https://docs.omnistrate.com/usecases/byoa/?#bring-your-own-vpc-byo-vpc"
                               target="_blank"

@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import useSnackbar from "src/hooks/useSnackbar";
 import DisplayHeading from "components/NonDashboardComponents/DisplayHeading";
 import PageDescription from "components/NonDashboardComponents/PageDescription";
-import SubmitButton from "components/NonDashboardComponents/FormElementsV2/SubmitButton";
 import TextField from "components/NonDashboardComponents/FormElementsV2/TextField";
 import FieldContainer from "components/NonDashboardComponents/FormElementsV2/FieldContainer";
 import FieldLabel from "components/NonDashboardComponents/FormElementsV2/FieldLabel";
@@ -18,6 +17,7 @@ import { styleConfig } from "src/providerConfig";
 
 import Confetti from "public/assets/images/non-dashboard/confetti.svg";
 import Image from "next/image";
+import Button from "src/components/Button/Button";
 
 const resetPasswordValidationSchema = Yup.object({
   email: Yup.string()
@@ -103,7 +103,9 @@ const ResetPasswordPage = (props) => {
             your password.
           </PageDescription>
         </Stack>
-        <SubmitButton href="/signin">Go to Login</SubmitButton>
+        <Button variant="contained" href="/signin">
+          Go to Login
+        </Button>
 
         <Text
           size="small"
@@ -150,14 +152,15 @@ const ResetPasswordPage = (props) => {
           helperText={touched.email && errors.email}
         />
       </FieldContainer>
-      <SubmitButton
+      <Button
+        variant="contained"
         type="submit"
         onClick={formik.handleSubmit}
         disabled={!formik.isValid || (isReCaptchaSetup && !isScriptLoaded)}
         loading={resetPasswordMutation.isLoading}
       >
         Submit
-      </SubmitButton>
+      </Button>
       {isReCaptchaSetup && (
         <ReCAPTCHA
           size="invisible"

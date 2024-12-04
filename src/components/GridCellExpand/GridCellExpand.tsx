@@ -112,7 +112,7 @@ const GridCellExpand = React.memo(function GridCellExpand(
         textOverflow="ellipsis"
         overflow="hidden"
         ref={cellValue}
-        sx={{ ...(href ? { color: "#6941C6" } : {}), ...textStyles }}
+        sx={{ ...(href ? { color: "#2C323E" } : {}), ...textStyles }}
         onClick={onClick}
         title={value}
       >
@@ -123,7 +123,7 @@ const GridCellExpand = React.memo(function GridCellExpand(
         <ArrowOutwardIcon
           fontSize="small"
           sx={{
-            color: "#7F56D9",
+            color: "#2C323E",
           }}
         />
       )}

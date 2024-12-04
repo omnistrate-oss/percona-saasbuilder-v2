@@ -1,45 +1,30 @@
-import Head from "next/head";
 import Image from "next/image";
 import { Box } from "@mui/material";
-import MainImg from "public/assets/images/non-dashboard/signin-main.svg";
 import Footer from "../Footer";
 import Logo from "../Logo";
 import CurvedArrow from "../Icons/CurvedArrow";
+import PerconaLogo from "public/assets/images/logos/percona-logo.svg";
 
 const MainImageLayout = ({
   orgName,
   orgLogoURL,
-  pageTitle,
   showArrow,
   children,
   contentMaxWidth = 480,
 }) => {
   return (
     <>
-      {pageTitle && (
-        <Head>
-          <title>{pageTitle}</title>
-        </Head>
-      )}
       <Box display="grid" gridTemplateColumns="1fr 1fr" height="100%">
         {/* Image Box */}
         <Box
-          p="50px 36px"
           sx={{
-            display: "grid",
-            placeItems: "center",
             boxShadow: "0px 12px 16px -4px #10182814",
+            backgroundImage: "url('/assets/images/non-dashboard/bg-main.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
-        >
-          <Image
-            src={MainImg}
-            alt="Hero Image"
-            width={646}
-            height={484}
-            style={{ maxWidth: "800px", height: "auto" }}
-            priority
-          />
-        </Box>
+        />
         <Box
           sx={{
             position: "relative", // For the Footer
@@ -59,7 +44,12 @@ const MainImageLayout = ({
                   style={{ position: "absolute", top: "-80px", left: "0px" }}
                 />
               )}
-              {orgLogoURL ? <Logo src={orgLogoURL} alt={orgName} /> : ""}
+
+              {orgLogoURL ? (
+                <Logo src={orgLogoURL} alt={orgName} />
+              ) : (
+                <Image alt={orgName} src={PerconaLogo} />
+              )}
             </Box>
             {children}
           </Box>

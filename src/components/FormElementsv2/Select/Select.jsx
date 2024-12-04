@@ -27,11 +27,11 @@ const Select = styled(({ isLoading = false, children, ...props }) => (
   >
     {isLoading ? <LoadingUI /> : children}
   </MuiSelect>
-))(({ theme, marginTop = "6px" }) => ({
+))(({ theme, marginTop = "6px", rounded }) => ({
   marginTop: marginTop,
   minWidth: 140,
   boxShadow: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
-  borderRadius: 8,
+  borderRadius: rounded ? "128px" : 8,
   background: "white",
   marginTop: 6,
   [`& .MuiOutlinedInput-input`]: {
@@ -48,7 +48,7 @@ const Select = styled(({ isLoading = false, children, ...props }) => (
     color: "rgba(0, 0, 0, 0.26);",
   },
   "&.Mui-focused": {
-    boxShadow: `0px 0px 0px 4px #F4EBFF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05)`,
+    boxShadow: `0px 0px 0px 4px #E8F3FF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05)`,
     // border: "1px solid #D6BBFB",
   },
 
@@ -64,7 +64,7 @@ const Select = styled(({ isLoading = false, children, ...props }) => (
     border: "1px solid #D0D5DD",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: "1px solid #D6BBFB",
+    border: "1px solid #B6D9FF",
   },
   "&.Mui-error .MuiOutlinedInput-notchedOutline": {
     border: "1px solid  #FCA5A5",

@@ -16,7 +16,7 @@ const CLIManagedConnectivityDetails = ({ additionalEndpoints }) => {
           pt="0px"
         >
           <Box py="12px" borderBottom="1px solid #E4E7EC">
-            <Text size="small" weight="semibold" color="#6941C6">
+            <Text size="small" weight="semibold" color="#2C323E">
               {resourceName}
             </Text>
           </Box>

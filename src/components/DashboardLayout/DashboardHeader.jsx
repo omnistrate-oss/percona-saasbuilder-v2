@@ -25,7 +25,11 @@ function DashboardHeader(props) {
   const serviceNameRef = useRef();
   useUserData();
   //prefetch billing data
-  useBillingDetails();
+  const billingDetailsQuery = useBillingDetails();
+
+  const isBillingEnabled = Boolean(
+    billingDetailsQuery.isFetched && billingDetailsQuery.data
+  );
   const userAllData = useSelector(selectUserData);
   const { logout } = useLogout();
   const environmentType = useEnvironmentType();
@@ -66,18 +70,6 @@ function DashboardHeader(props) {
         </Box>
 
         <Stack direction="row" alignItems="center" gap="10px" pr="16px">
-          {(serviceName || noServicesAvailable) && serviceLogoURL && (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={
-                serviceLogoURL ||
-                "/assets/images/dashboard/service/servicePlaceholder.png"
-              }
-              height={28}
-              style={{ maxHeight: "28px", width: "auto", maxWidth: "180px" }}
-              alt="service-logo"
-            />
-          )}
           {serviceName && (
             <Tooltip
               isVisible={shouldShowTooltipOnServiceName}
@@ -106,6 +98,21 @@ function DashboardHeader(props) {
           {environmentType &&
             environmentType !== ENVIRONMENT_TYPES.PROD &&
             (serviceName || noServicesAvailable) && <EnvironmentTypeChip />}
+
+          {(serviceName || noServicesAvailable) && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={serviceLogoURL || "/assets/images/logos/percona-logo.svg"}
+              height={28}
+              style={{
+                maxHeight: "28px",
+                width: "auto",
+                maxWidth: "180px",
+                marginLeft: "10px",
+              }}
+              alt="service-logo"
+            />
+          )}
         </Stack>
       </Stack>
 
@@ -115,6 +122,7 @@ function DashboardHeader(props) {
         accessPage={accessPage}
         marketplacePage={marketplacePage}
         currentSubscription={currentSubscription}
+        isBillingEnabled={isBillingEnabled}
       />
     </Box>
   );
