@@ -14,6 +14,7 @@ import GcpLogo from "src/components/Logos/GcpLogo/GcpLogo";
 import AzureLogo from "src/components/Logos/AzureLogo/AzureLogo";
 import JSONViewModal from "./JSONViewModal";
 import { styleConfig } from "src/providerConfig";
+import Tooltip from "src/components/Tooltip/Tooltip";
 
 export type Row = {
   label: string;
@@ -155,7 +156,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                     fontWeight: 600,
                     fontSize: "14px",
                     lineHeight: "20px",
-                    color: "#2C323E",
+                    color: styleConfig.linkColor,
                     cursor: "pointer",
                   }}
                   onClick={(event) => {
@@ -172,12 +173,14 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
           } else if (textType.includes(valueType)) {
             value = (
               <>
-                <Text ellipsis size="small" weight="regular" color="#475467">
-                  {row.value}
-                </Text>
+                <Tooltip title={row.value} placement="top">
+                  <Text ellipsis size="small" weight="regular" color="#475467">
+                    {row.value}
+                  </Text>
+                </Tooltip>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
+                  iconProps={{ width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -203,7 +206,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 </Link>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
+                  iconProps={{ width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -222,7 +225,7 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 </Text>
                 <CopyButton
                   text={row.value}
-                  iconProps={{ color: "#2C323E", width: 20, height: 20 }}
+                  iconProps={{ width: 20, height: 20 }}
                   iconStyle={{ flexShrink: 0 }}
                 />
               </>
@@ -240,7 +243,6 @@ const PropertyDetails: FC<PropertyTableProps> = ({ rows, ...otherProps }) => {
                 <CopyButton
                   text={row.value}
                   iconProps={{
-                    color: "#2C323E",
                     width: 20,
                     height: 20,
                   }}

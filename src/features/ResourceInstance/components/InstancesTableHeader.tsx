@@ -84,6 +84,11 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
     view
   );
 
+  const cliManagedResource = CLI_MANAGED_RESOURCES.includes(
+    selectedInstance?.detailedNetworkTopology?.[selectedResourceId]
+      ?.resourceType
+  );
+
   const actions = useMemo(() => {
     const actionsObj = {
       start: false,
@@ -249,6 +254,7 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
               handleModify={handleModify}
               handleRemoveCapacity={handleRemoveCapacity}
               handleAddCapacity={handleAddCapacity}
+              isCliManagedResource={cliManagedResource}
               isAddCapacity={!actions.addCapacity}
               isRemoveCapacity={!actions.removeCapacity}
               isRestartDisabled={!actions.restart}

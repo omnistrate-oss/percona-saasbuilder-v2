@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Footer from "../Footer";
 import Logo from "../Logo";
 import CurvedArrow from "../Icons/CurvedArrow";
-import PerconaLogo from "public/assets/images/logos/percona-logo.svg";
+import PerconaLogo from "public/assets/images/percona-logo.png";
 
 const MainImageLayout = ({
   orgName,
@@ -48,7 +48,12 @@ const MainImageLayout = ({
               {orgLogoURL ? (
                 <Logo src={orgLogoURL} alt={orgName} />
               ) : (
-                <Image alt={orgName} src={PerconaLogo} />
+                <Image
+                  width={142}
+                  height="auto"
+                  alt={orgName}
+                  src={PerconaLogo}
+                />
               )}
             </Box>
             {children}

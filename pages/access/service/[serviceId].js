@@ -95,6 +95,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { styleConfig } from "src/providerConfig";
 import NetworkHeaderIcon from "src/components/Icons/Network/NetworkHeaderIcon";
+import {
+  selectInstanceListSummaryVisibility,
+  toggleInstanceListSummaryVisibility,
+} from "src/slices/genericSlice";
 
 export const getServerSideProps = async () => {
   return {
@@ -227,7 +231,7 @@ function MarketplaceService() {
   const [currentTabValue, setCurrentTabValue] = useState(false);
   const [viewInfoDrawerOpen, setViewInfoDrawerOpen] = useState(false);
   const [updateDrawerOpen, setUpdateDrawerOpen] = useState(false);
-  const [insightsVisible, setInsightsVisible] = useState(true);
+  const insightsVisible = useSelector(selectInstanceListSummaryVisibility);
 
   const timeoutID = useRef(null);
   const currentResourceInfo = useRef({ resourceKey: null, resourceId: null });
@@ -1818,7 +1822,7 @@ function MarketplaceService() {
                 background: styleConfig.secondaryHoverLight,
               },
             }}
-            onClick={() => setInsightsVisible((prev) => !prev)}
+            onClick={() => dispatch(toggleInstanceListSummaryVisibility())}
           >
             {insightsVisible ? "Hide Insights" : "View Insights"}{" "}
           </Button>

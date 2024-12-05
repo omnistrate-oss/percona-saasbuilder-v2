@@ -20,7 +20,7 @@ export const styleConfig = {
   // primaryHoverColor: "#7F56D9", // Outlined Button Hover
   secondaryColor: "#0E5FB5",
   secondaryHoverLight: "#0E5FB50d",
-  linkColor: "#2C323E",
+  linkColor: "#0E5FB5",
   headerIconColor: "#0E5FB5",
   dangerColor: "#E2584D",
 };
