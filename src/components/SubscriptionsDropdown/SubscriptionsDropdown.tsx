@@ -141,6 +141,7 @@ const SubscriptionsDropdown: FC<SubscriptionDropdownProps> = (props) => {
 
   return (
     <Select
+      rounded
       displayEmpty={true}
       disabled={isLoadingSubscriptions}
       value={subscriptionId || ""}
@@ -155,7 +156,6 @@ const SubscriptionsDropdown: FC<SubscriptionDropdownProps> = (props) => {
         },
       }}
       renderValue={() => {
-
         if (isLoadingSubscriptions) {
           return (
             <Stack justifyContent="center" alignItems="center" mt="3px">

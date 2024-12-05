@@ -30,7 +30,7 @@ function ProfileForm(props) {
         /*eslint-disable-next-line no-use-before-define*/
         formik.resetForm();
         refetch();
-        snackbar.showSuccess("Update Profile Successfully");
+        snackbar.showSuccess("Updated Profile Successfully");
       })
       .catch((error) => {
         if (

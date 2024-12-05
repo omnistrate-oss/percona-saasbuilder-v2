@@ -70,6 +70,21 @@ function DashboardHeader(props) {
         </Box>
 
         <Stack direction="row" alignItems="center" gap="10px" pr="16px">
+          {(serviceName || noServicesAvailable) && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={
+                serviceLogoURL || "/assets/images/logos/percona-icon-logo.svg"
+              }
+              height={28}
+              style={{
+                maxHeight: "28px",
+                width: "auto",
+                maxWidth: "180px",
+              }}
+              alt="service-logo"
+            />
+          )}
           {serviceName && (
             <Tooltip
               isVisible={shouldShowTooltipOnServiceName}
@@ -98,21 +113,6 @@ function DashboardHeader(props) {
           {environmentType &&
             environmentType !== ENVIRONMENT_TYPES.PROD &&
             (serviceName || noServicesAvailable) && <EnvironmentTypeChip />}
-
-          {(serviceName || noServicesAvailable) && (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={serviceLogoURL || "/assets/images/logos/percona-logo.svg"}
-              height={28}
-              style={{
-                maxHeight: "28px",
-                width: "auto",
-                maxWidth: "180px",
-                marginLeft: "10px",
-              }}
-              alt="service-logo"
-            />
-          )}
         </Stack>
       </Stack>
 

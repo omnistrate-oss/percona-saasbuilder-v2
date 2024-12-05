@@ -365,7 +365,7 @@ export const Title = styled("h1")(({ theme }) => ({
   "&::before": {
     content: '""',
     position: "absolute",
-    borderLeft: "5px solid #38B601",
+    borderLeft: `5px solid ${styleConfig.primaryColor}`,
     height: 64,
     left: -21,
     [theme.breakpoints.down("desktop")]: {

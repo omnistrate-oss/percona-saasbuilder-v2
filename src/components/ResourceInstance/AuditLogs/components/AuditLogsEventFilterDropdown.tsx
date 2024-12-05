@@ -62,7 +62,13 @@ const AuditLogsEventFilterDropdown: FC<DropdownProps> = (props) => {
             {selectedEventTypes.length > 0 && (
               <Chip size="small" label={selectedEventTypes.length} />
             )}
-            <Text size="small" weight="medium" color="#344054">
+            <Text
+              size="small"
+              weight="medium"
+              color="#344054"
+              //@ts-ignore
+              mt="1px"
+            >
               Filter by Type
             </Text>
           </Stack>

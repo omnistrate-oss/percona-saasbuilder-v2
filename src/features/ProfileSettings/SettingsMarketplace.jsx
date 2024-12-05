@@ -14,7 +14,8 @@ import MySubscriptions from "../Marketplace/MySubscriptions";
 import BillingPage from "../Billing/BillingPage";
 
 function SettingsMarketplace(props) {
-  const { currentTab, setCurrentTab, isBillingEnabled } = props;
+  const { currentTab, setCurrentTab, isBillingEnabled, closeSideDrawer } =
+    props;
 
   const router = useRouter();
 
@@ -43,7 +44,9 @@ function SettingsMarketplace(props) {
             {currentTab === tabs.billingAddress && (
               <BillingAddress refetch={refetch} selectUser={selectUser} />
             )}
-            {currentTab === tabs.subscriptions && <MySubscriptions />}
+            {currentTab === tabs.subscriptions && (
+              <MySubscriptions closeSideDrawer={closeSideDrawer} />
+            )}
             {isBillingEnabled && currentTab === tabs.billing && <BillingPage />}
           </Box>
         </>

@@ -197,7 +197,12 @@ const SignupPage = (props) => {
 
   if (showSuccess) {
     return (
-      <MainImageLayout showArrow orgName={orgName} contentMaxWidth={650}>
+      <MainImageLayout
+        orgLogoURL={orgLogoURL}
+        showArrow
+        orgName={orgName}
+        contentMaxWidth={650}
+      >
         <SuccessBox
           title="Verify Your Email to Activate Your Account"
           description="Thank you for signing up! We've sent a confirmation link to your email. Please check your inbox and click the link to verify your email address and complete the activation process."
