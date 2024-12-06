@@ -24,7 +24,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import DisplayHeading from "components/NonDashboardComponents/DisplayHeading";
 import { Text } from "src/components/Typography/Typography";
 import { styleConfig } from "src/providerConfig";
-import Button from "src/components/Button/Button";
+import SubmitButton from "src/components/NonDashboardComponents/FormElementsV2/SubmitButton";
 
 const createSigninValidationSchema = Yup.object({
   email: Yup.string()
@@ -216,15 +216,19 @@ const SigninPage = (props) => {
 
         {/* Login and Google Button */}
         <Stack gap="16px">
-          <Button
+          <SubmitButton
             variant="contained"
             type="submit"
             onClick={formik.handleSubmit}
-            disabled={!formik.isValid || (isReCaptchaSetup && !isScriptLoaded)}
+            disabled={
+              !formik.isValid ||
+              (isReCaptchaSetup && !isScriptLoaded) ||
+              signInMutation.isLoading
+            }
             loading={signInMutation.isLoading}
           >
             Login
-          </Button>
+          </SubmitButton>
           {isReCaptchaSetup && (
             <ReCAPTCHA
               size="invisible"

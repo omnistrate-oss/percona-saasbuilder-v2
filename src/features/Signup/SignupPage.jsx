@@ -22,7 +22,7 @@ import { IDENTITY_PROVIDER_STATUS_TYPES } from "../Signin/constants";
 import ReCAPTCHA from "react-google-recaptcha";
 import SuccessBox from "src/components/SuccessBox/SuccessBox";
 import { styleConfig } from "src/providerConfig";
-import Button from "src/components/Button/Button";
+import SubmitButton from "src/components/NonDashboardComponents/FormElementsV2/SubmitButton";
 
 const signupValidationSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -327,17 +327,19 @@ const SignupPage = (props) => {
 
           {/* Login and Google Button */}
           <Stack mt="32px" width="480px" mx="auto">
-            <Button
+            <SubmitButton
               variant="contained"
               type="submit"
               onClick={formik.handleSubmit}
               disabled={
-                !formik.isValid || (isReCaptchaSetup && !isScriptLoaded)
+                !formik.isValid ||
+                (isReCaptchaSetup && !isScriptLoaded) ||
+                signupMutation.isLoading
               }
               loading={signupMutation.isLoading}
             >
               Create Account
-            </Button>
+            </SubmitButton>
             {isReCaptchaSetup && (
               <ReCAPTCHA
                 size="invisible"
