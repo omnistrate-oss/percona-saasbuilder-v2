@@ -121,7 +121,7 @@ const ChangePasswordPage = (props) => {
           <SubmitButton
             type="submit"
             onClick={formik.handleSubmit}
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || changePasswordMutation.isLoading}
             loading={changePasswordMutation.isLoading}
           >
             Submit

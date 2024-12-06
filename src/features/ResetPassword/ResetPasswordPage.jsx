@@ -18,6 +18,7 @@ import { styleConfig } from "src/providerConfig";
 import Confetti from "public/assets/images/non-dashboard/confetti.svg";
 import Image from "next/image";
 import Button from "src/components/Button/Button";
+import SubmitButton from "src/components/NonDashboardComponents/FormElementsV2/SubmitButton";
 
 const resetPasswordValidationSchema = Yup.object({
   email: Yup.string()
@@ -152,15 +153,19 @@ const ResetPasswordPage = (props) => {
           helperText={touched.email && errors.email}
         />
       </FieldContainer>
-      <Button
+      <SubmitButton
         variant="contained"
         type="submit"
         onClick={formik.handleSubmit}
-        disabled={!formik.isValid || (isReCaptchaSetup && !isScriptLoaded)}
+        disabled={
+          !formik.isValid ||
+          (isReCaptchaSetup && !isScriptLoaded) ||
+          resetPasswordMutation.isLoading
+        }
         loading={resetPasswordMutation.isLoading}
       >
         Submit
-      </Button>
+      </SubmitButton>
       {isReCaptchaSetup && (
         <ReCAPTCHA
           size="invisible"
