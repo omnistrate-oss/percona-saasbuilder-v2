@@ -750,7 +750,7 @@ function MarketplaceService() {
     initialValues: {
       serviceId: serviceId,
       cloud_provider: defaultCloudProvider,
-      network_type: "",
+      network_type: "PUBLIC",
       region: "",
       requestParams: { ...requestParams },
       serviceProviderId: service?.serviceProviderId,
@@ -925,6 +925,16 @@ function MarketplaceService() {
               data.requestParams.account_configuration_method =
                 values.configMethod;
             }
+          }
+
+          let isCloudProvider = false;
+          for (const param of schemaArray) {
+            if (["cloud_provider"].includes(param.key)) {
+              isCloudProvider = true;
+            }
+          }
+          if (!isCloudProvider || isCustomNetworkEnabled) {
+            delete data["network_type"];
           }
 
           if (!isTypeError) {

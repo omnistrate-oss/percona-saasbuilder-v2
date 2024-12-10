@@ -22,6 +22,25 @@ import { AccessResourceInstance } from "src/types/resourceInstance";
 import { CLI_MANAGED_RESOURCES } from "src/constants/resource";
 import GenerateTokenDialog from "src/components/GenerateToken/GenerateTokenDialog";
 
+const SpeedoMeterLegend = ({
+  label = "Low",
+  color = "rgba(23, 178, 106, 1)",
+}) => (
+  <Box gap="6px" display="flex" alignItems="center">
+    <Box
+      sx={{
+        width: "8px",
+        height: "8px",
+        borderRadius: "100%",
+        background: color,
+      }}
+    />
+    <Text size="small" weight="regular" color="rgba(71, 84, 103, 1)">
+      {label}
+    </Text>
+  </Box>
+);
+
 type InstancesTableHeaderProps = {
   count?: number;
   selectedResourceName?: string;
@@ -113,6 +132,12 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
         ?.resourceType
     );
 
+    //Action disabled in Resource Type is Proxy
+    const isManagedResource = Boolean(
+      selectedInstance?.detailedNetworkTopology?.[selectedResourceId]
+        ?.resourceType === "PortsBasedProxy"
+    );
+
     const isUpdateAllowedByRBAC = isOperationAllowedByRBAC(
       operationEnum.Update,
       role,
@@ -127,22 +152,34 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
 
     const { status, backupStatus } = selectedInstance || {};
 
-    if (status === "STOPPED" && isUpdateAllowedByRBAC && !cliManagedResource) {
+    if (
+      status === "STOPPED" &&
+      isUpdateAllowedByRBAC &&
+      !cliManagedResource &&
+      !isManagedResource
+    ) {
       actionsObj.start = true;
-    }
-
-    if (status === "RUNNING" && isUpdateAllowedByRBAC && !cliManagedResource) {
-      actionsObj.stop = true;
     }
 
     if (
       status === "RUNNING" &&
       isUpdateAllowedByRBAC &&
       !cliManagedResource &&
+      !isManagedResource
+    ) {
+      actionsObj.stop = true;
+    }
+
+    if (
+      isUpdateAllowedByRBAC &&
+      !cliManagedResource &&
+      !isManagedResource &&
       selectedInstance?.autoscalingEnabled
     ) {
-      actionsObj.addCapacity = true;
-      actionsObj.removeCapacity = true;
+      if (status === "RUNNING") {
+        actionsObj.addCapacity = true;
+        actionsObj.removeCapacity = true;
+      }
       actionsObj.isVisibleCapacity = true;
     }
 
@@ -150,7 +187,8 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
       (status === "RUNNING" || status === "FAILED") &&
       isUpdateAllowedByRBAC &&
       !cliManagedResource &&
-      !isCurrentResourceBYOA
+      !isCurrentResourceBYOA &&
+      !isManagedResource
     ) {
       actionsObj.restart = true;
     }
@@ -158,12 +196,13 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
     if (
       (status === "RUNNING" || status === "FAILED") &&
       isUpdateAllowedByRBAC &&
-      !isCurrentResourceBYOA
+      !isCurrentResourceBYOA &&
+      !isManagedResource
     ) {
       actionsObj.modify = true;
     }
 
-    if (status !== "DELETING" && isDeleteAllowedByRBAC) {
+    if (status !== "DELETING" && isDeleteAllowedByRBAC && !isManagedResource) {
       actionsObj.delete = true;
     }
     if (
@@ -176,7 +215,8 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
     if (
       backupStatus?.earliestRestoreTime &&
       isUpdateAllowedByRBAC &&
-      !cliManagedResource
+      !cliManagedResource &&
+      !isManagedResource
     ) {
       actionsObj.restore = true;
     }
@@ -318,22 +358,3 @@ const InstancesTableHeader: FC<InstancesTableHeaderProps> = ({
 };
 
 export default InstancesTableHeader;
-
-const SpeedoMeterLegend = ({
-  label = "Low",
-  color = "rgba(23, 178, 106, 1)",
-}) => (
-  <Box gap="6px" display="flex" alignItems="center">
-    <Box
-      sx={{
-        width: "8px",
-        height: "8px",
-        borderRadius: "100%",
-        background: color,
-      }}
-    />
-    <Text size="small" weight="regular" color="rgba(71, 84, 103, 1)">
-      {label}
-    </Text>
-  </Box>
-);
