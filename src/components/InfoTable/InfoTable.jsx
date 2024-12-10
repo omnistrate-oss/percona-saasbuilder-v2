@@ -5,7 +5,7 @@ import MuiTableBody from "@mui/material/TableBody";
 import MuiTableRow from "@mui/material/TableRow";
 import MuiTableCell from "@mui/material/TableCell";
 import { Text } from "../Typography/Typography";
-import CopyToClipbpoardButton from "../CopyClipboardButton/CopyClipboardButton";
+import CopyToClipboardButton from "../CopyClipboardButton/CopyClipboardButton";
 
 export const TableContainer = styled(MuiTableContainer)(() => ({
   background: "#FFFFFF",
@@ -64,7 +64,7 @@ export const CellDescription = (props) => {
         </div>
       </Tooltip>
       {children && typeof children === "string" && (
-        <CopyToClipbpoardButton text={children} />
+        <CopyToClipboardButton text={children} />
       )}
     </Stack>
   );
